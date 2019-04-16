@@ -13,18 +13,23 @@
 	<form th:object="${pelaaja}" th:action="@{../save}" action="#" method="post">
 		<input type="hidden" th:field="*{id}" class="form-control"/>
 	<div class="form-group">
+		<label for="pelaajan nimi">Pelaajan nimi</label>
 		<input type="text" th:field="*{nimi}" />
 	</div>
 	<div class="form-group">
-		<input type="text" th:field="*{pelinumero}" />
+		<label for="pelinumero">Pelinumero</label>
+		<input name="pelinumero" type="text" th:field="*{pelinumero}" />
 	</div>
 	<div class="form-group">
+		<label for="maalit">Maalit</label>
 		<input type="text" th:field="*{maalit}" />
 	</div>
 	<div class="form-group">
+		<label for="syotot">Syötöt</label>
 		<input type="text" th:field="*{syotot}" />
 	</div>
 	<div class="form-group">
+		<label for="pisteet">Pisteet</label>
 		<input type="text" th:field="*{pisteet}" />
 	</div>
 	
