@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<title>Uppopallo</title>
+</head>
+
+<body>
+	<h1>Lisää pelaaja</h1>
+	<div>
+		<form th:object="${pelaaja}" th:action="@{save}" action="#" method="post">
+			<div class="form-group">
+				<label for="pelaajan nimi">Pelaajan nimi</label>
+				<input type="text" id="nimi" th:field="*{nimi}" />
+			</div>
+			<div class="form-group">
+				<label for="pelinumero">Pelinumero</label>
+				<input type="text" id="pelinumero" th:field="*{pelinumero}" />
+			</div>
+			<div class="form-group">
+				<label for="maalit">Maalit</label>
+				<input type="text" id="maalit" th:field="*{maalit}" />
+			</div>
+			<div class="form-group">
+				<label for="syotot">Syötöt</label>
+				<input type="text" id="syotot" th:field="*{syotot}" />
+			</div>
+			<div class="form-group">
+				<label for="pisteet">Pisteet</label>
+				<input type="text" id="pisteet" th:field="*{pisteet}" />
+			</div>
+			<label for="joukkuelista">Joukkue</label>
+			<select id="joukkuelista" th:field="*{joukkue}" class="form-control">
+				<option th:each="joukkue: ${joukkue}"th:value="${joukkue.joukkueid}"th:text="${joukkue.name}"></option>
+			</select>
+				<input class="btn btn-success" type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>

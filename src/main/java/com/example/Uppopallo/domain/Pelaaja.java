@@ -4,31 +4,42 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Pelaaja {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	public long id;
 	
-	String nimi;
-	int pelinumero, maalit, syotot, pisteet;
+	public String nimi;
+	public int pelinumero, maalit, syotot, pisteet;
+	
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "joukkueid")
+	private Joukkue joukkue;
 	
 	public Pelaaja() {
 		
 	}
 	
-	public Pelaaja(String nimi,int pelinumero,int maalit,int syotot,int pisteet) {
+	public Pelaaja(String nimi,int pelinumero,int maalit,int syotot,int pisteet, Joukkue joukkue) {
+		super();
 		this.nimi = nimi;
 		this.pelinumero = pelinumero;
 		this.maalit = maalit;
 		this.syotot = syotot;
 		this.pisteet = pisteet;
+		this.joukkue = joukkue;
 	}
 	
 	
-	
+
 	public long getId() {
 		return id;
 	}
@@ -77,9 +88,20 @@ public class Pelaaja {
 		this.pisteet = pisteet;
 	}
 
+	public Joukkue getJoukkue() {
+		return joukkue;
+	}
+
+	public void setJoukkue(Joukkue joukkue) {
+		this.joukkue = joukkue;
+	}
+
 	@Override
 	public String toString() {
-	return "Pelaaja id= " + id + ", Nimi= " + nimi;
+		if (this.joukkue != null) {
+			return "Pelaaja id = " + id + "joukkue" + this.getJoukkue();
+		}
+	return "Pelaaja id" + id;
 	}
 
 }
